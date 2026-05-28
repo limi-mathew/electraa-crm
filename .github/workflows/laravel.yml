@@ -1,0 +1,75 @@
+name: Electraa CRM CI
+
+on:
+push:
+branches:
+- main
+
+pull_request:
+branches:
+- main
+
+jobs:
+tests:
+runs-on: ubuntu-latest
+
+```
+services:
+  mysql:
+    image: mysql:8
+    env:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testing
+    ports:
+      - 3306:3306
+
+    options: >-
+      --health-cmd="mysqladmin ping"
+      --health-interval=10s
+      --health-timeout=5s
+      --health-retries=3
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+
+steps:
+  - name: Checkout Code
+    uses: actions/checkout@v4
+
+  - name: Setup PHP
+    uses: shivammathur/setup-php@v2
+
+    with:
+      php-version: 8.3
+      extensions: mbstring, pdo, mysql, redis
+      coverage: none
+
+  - name: Copy ENV
+    run: cp .env.example .env
+
+  - name: Install Composer Dependencies
+    run: composer install --no-interaction --prefer-dist
+
+  - name: Generate APP_KEY
+    run: php artisan key:generate
+
+  - name: Run Migrations
+    run: php artisan migrate
+
+  - name: Install NPM Dependencies
+    run: npm install
+
+  - name: Build Assets
+    run: npm run build
+
+  - name: Run Pint
+    run: vendor/bin/pint --test
+
+  - name: Run PHPStan
+    run: vendor/bin/phpstan analyse app
+
+  - name: Run PHPUnit Tests
+    run: php artisan test
+```
