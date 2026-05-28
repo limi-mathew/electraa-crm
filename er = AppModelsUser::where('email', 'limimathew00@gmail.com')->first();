@@ -1,0 +1,18 @@
+[90m= [39m[34;4mIlluminate\Database\Eloquent\Collection[39;24m {#9520
+    [34mall[39m: [
+      [34;4mSpatie\Permission\Models\Role[39;24m {#9521
+        [34mid[39m: [35m1[39m,
+        [34mname[39m: [32m"[39m[32mAdmin[39m[32m"[39m,
+        [34mguard_name[39m: [32m"[39m[32mweb[39m[32m"[39m,
+        [34mcreated_at[39m: [32m"[39m[32m2026-04-06 10:43:41[39m[32m"[39m,
+        [34mupdated_at[39m: [32m"[39m[32m2026-04-06 10:43:41[39m[32m"[39m,
+      },
+      [34;4mSpatie\Permission\Models\Role[39;24m {#9518
+        [34mid[39m: [35m2[39m,
+        [34mname[39m: [32m"[39m[32mStaff[39m[32m"[39m,
+        [34mguard_name[39m: [32m"[39m[32mweb[39m[32m"[39m,
+        [34mcreated_at[39m: [32m"[39m[32m2026-04-06 10:44:18[39m[32m"[39m,
+        [34mupdated_at[39m: [32m"[39m[32m2026-04-06 10:44:18[39m[32m"[39m,
+      },
+    ],
+  }
