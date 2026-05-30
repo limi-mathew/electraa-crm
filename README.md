@@ -117,21 +117,57 @@ electraa-crm/
 ├── eslint.config.js
 └── README.md
 ```
-
 ---
 
-# Architecture Highlights
+## Development Architecture
 
-The project follows a modular Laravel architecture using:
+### Filament Admin Panel
+
+* Admin panel built using FilamentPHP
+* Custom Filament Resources
+* Custom Widgets & Dashboard Analytics
+* Separate Admin Panel Provider
+
+### Authentication & Authorization
+
+* Spatie Roles & Permissions
+* Filament User Authentication
+
+### Real-time Chat System
+
+* Customer ↔ Admin chat support
+* Redis broadcasting
+* Laravel Reverb WebSockets
+* Livewire real-time UI updates
+
+### Payment System
+
+* Stripe payment gateway integration
+* Invoice payment handling
+* Stripe keys configured using `.env`
+
+### Performance & Debugging
+
+* Laravel Debugbar for:
+
+  * Query monitoring
+  * N+1 detection
+  * Eager loading analysis
+
+* Laravel Telescope for:
+
+  * Cache monitoring
+  * Redis monitoring
+  * Queue jobs
+  * Events & batches
+  * Application debugging
+
+### Architecture Patterns
 
 * Repository Pattern
-* Service Layer Pattern
+* Service Layer
 * Action Classes
-* Event-Driven Communication
-* Queue Jobs
-* Policy-Based Authorization
-* Real-Time WebSocket Communication
-* Filament Admin Architecture
+* Event Driven Architecture
 
 ---
 
@@ -156,7 +192,7 @@ The project follows a modular Laravel architecture using:
 
 ## Invoice Management
 
-![Invoices](docs/screenshots/invoices.png)
+![Invoices](docs/screenshots/invoice.png)
 ![Payment](docs/screenshots/payment.png)
 ---
 
@@ -181,6 +217,7 @@ The project follows a modular Laravel architecture using:
 # Installation
 
 ```bash
+
 git clone https://github.com/YOUR_USERNAME/electraa-crm.git
 
 cd electraa-crm
@@ -196,68 +233,19 @@ php artisan migrate --seed
 npm install
 
 npm run build
-```
-
----
-
-# Run Locally
-
-```bash
+Run Project
 php artisan serve
-```
 
-Admin panel:
+Admin Panel:
 
-```bash
 http://localhost/admin
-```
-
----
-
-# Quality Tools
-
-## Frontend Quality Check
-
-```bash
+Quality Tools
 npm run quality
-```
 
-## PHP Static Analysis
-
-```bash
 vendor/bin/phpstan analyse app
-```
 
-## Laravel Pint Formatting
-
-```bash
-vendor/bin/pint
-```
-
----
-
-# Testing
-
-```bash
 php artisan test
-```
 
----
-
-# CI/CD Pipeline
-
-GitHub Actions is used for:
-
-* Automated Testing
-* Pint Validation
-* PHPStan Analysis
-* ESLint Validation
-* Deployment Workflow
-
-Workflow file:
-
-```text
-.github/workflows/laravel.yml
 ```
 ---
 
