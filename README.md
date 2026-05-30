@@ -6,7 +6,7 @@
 ![CI/CD](https://img.shields.io/badge/CI/CD-GitHub%20Actions-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-Electraa CRM is a modern Laravel + Filament based Electrical Contract Management CRM built for learning advanced Laravel architecture, scalable backend systems, real-time communication, CI/CD workflows, and SaaS application concepts.
+Electraa CRM is a Laravel and Filament based Electrical Contract Management System that enables businesses to manage customers, invoices, payments, and real-time customer communication through a centralized administrative dashboard.
 
 ---
 
