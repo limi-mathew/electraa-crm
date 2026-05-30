@@ -7,7 +7,7 @@
     "dev": "vite",
     "lint": "eslint resources/js --ext .js,.vue",
     "lint:fix": "eslint resources/js --ext .js,.vue --fix",
-    "format": "prettier --write resources/",
+    "format": "prettier --write resources/**/*.{js,vue,css,blade.php}",
     "quality": "npm run lint:fix && npm run format && vendor/bin/pint",
     "prepare": "husky"
   },
@@ -24,6 +24,7 @@
     "laravel-echo": "^2.3.4",
     "laravel-vite-plugin": "^3.0.0",
     "prettier": "^3.8.3",
+    "prettier-plugin-blade": "^3.1.6",
     "pusher-js": "^8.5.0",
     "tailwindcss": "^4.0.0",
     "vite": "^8.0.0",

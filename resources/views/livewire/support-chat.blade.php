@@ -1,153 +1,216 @@
 <div
     x-data="{ open: false }"
-    style="
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 99999;
-    "
+    style="position: fixed; bottom: 20px; right: 20px; z-index: 99999"
 >
-
-    <!-- Chat Button -->
-    <button
-        @click="open = !open"
-        style="
-            background: #007bff;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 999px;
-            border: none;
-            cursor: pointer;
-            font-size: 22px;
-        "
-    >
-        💬
-    </button>
-
-    <!-- Chat Popup -->
+    <!-- CHAT POPUP -->
     <div
         x-show="open"
+        x-transition
         style="
-            display:none;
-            background:white;
-            width:320px;
-            height:450px;
-            border:1px solid #ccc;
-            border-radius:10px;
-            margin-top:10px;
-            box-shadow:0 0 10px rgba(0,0,0,0.1);
-            overflow:hidden;
-            display:flex;
-            flex-direction:column;
+            position: absolute;
+            bottom: 75px;
+            right: 0;
+
+            width: 340px;
+            height: 500px;
+
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+            display: flex;
+            flex-direction: column;
+
+            overflow: hidden;
         "
     >
-
-        <!-- Header -->
+        <!-- HEADER -->
         <div
             style="
-                background:#007bff;
-                color:white;
-                padding:12px;
-                font-weight:bold;
+                background: #007bff;
+                color: white;
+                padding: 14px;
+                font-weight: bold;
+
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                flex-shrink: 0;
             "
         >
-            Support Chat
+            <span>Support Chat</span>
+
+            <button
+                @click="open = false"
+                style="
+                    background: none;
+                    border: none;
+                    color: white;
+                    font-size: 18px;
+                    cursor: pointer;
+                "
+            >
+                ✕
+            </button>
         </div>
-
-        <!-- Messages -->
+        <!-- MESSAGES -->
         <div
             style="
-                flex:1;
-                padding:10px;
-                overflow-y:auto;
-                background:#f5f5f5;
+                flex: 1;
+
+                overflow-y: auto;
+
+                padding: 15px;
+
+                background: #f5f7fb;
+
+                display: flex;
+                flex-direction: column;
+
+                justify-content: flex-end;
             "
         >
-
-            @forelse($messages as $msg)
-
-                <div
-                    style="
-                        margin-bottom:10px;
-                        text-align:
-                        {{ $msg->user_id == auth()->id() ? 'right' : 'left' }};
-                    "
-                >
-
-                    <span
+            <div>
+                @forelse ($messages as $msg)
+                    <div
                         style="
-                            display:inline-block;
-                            max-width:75%;
-                            padding:10px;
-                            border-radius:10px;
-                            background:
-                            {{ $msg->user_id == auth()->id()
-                                ? '#007bff'
-                                : '#e4e6eb' }};
-                            color:
-                            {{ $msg->user_id == auth()->id()
-                                ? 'white'
-                                : 'black' }};
-                            word-wrap:break-word;
+                    margin-bottom: 12px;
+
+                    display:flex;
+
+                    justify-content:
+                    {{ $msg->user_id == auth()->id()
+                        ? 'flex-end'
+                        : 'flex-start' }};
+                "
+                    >
+                        <div
+                            style="
+                        max-width: 75%;
+
+                        padding: 10px 14px;
+
+                        border-radius: 14px;
+
+                        word-break: break-word;
+
+                        background:
+                        {{ $msg->user_id == auth()->id()
+                            ? '#007bff'
+                            : '#e4e6eb' }};
+
+                        color:
+                        {{ $msg->user_id == auth()->id()
+                            ? 'white'
+                            : '#000' }};
+                    "
+                        >
+                            {{ $msg->message }}
+                        </div>
+                    </div>
+
+                @empty
+                    <div
+                        style="
+                            height: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: #888;
                         "
                     >
-                        {{ $msg->message }}
-                    </span>
+                        No messages yet
+                    </div>
 
-                </div>
-
-            @empty
-
-                <div style="text-align:center;color:#888;">
-                    No messages yet
-                </div>
-
-            @endforelse
-
+                @endforelse
+            </div>
         </div>
 
-        <!-- Input Area -->
+        <!-- INPUT AREA -->
         <div
             style="
-                padding:10px;
-                border-top:1px solid #ddd;
-                display:flex;
-                gap:5px;
-                background:white;
+                padding: 10px;
+
+                border-top: 1px solid #ddd;
+
+                background: white;
+
+                display: flex;
+                align-items: center;
+                gap: 8px;
+
+                flex-shrink: 0;
+                margin-top: auto;
             "
         >
-
             <input
                 type="text"
                 wire:model="message"
                 wire:keydown.enter="sendMessage"
-                placeholder="Type message..."
+                placeholder="Type your message..."
                 style="
-                     background:#f1f1f1;
-        padding:8px 12px;
-        border-radius:10px;
-        max-width:70%;
-        color:#000;
+                    flex: 1;
+
+                    border: 1px solid #ccc;
+
+                    padding: 10px 14px;
+
+                    border-radius: 999px;
+
+                    outline: none;
+
+                    font-size: 14px;
+
+                    background: #f8f8f8;
+                    color: #000;
                 "
-            >
+            />
 
             <button
                 wire:click="sendMessage"
                 style="
-                    background:#007bff;
-                    color:white;
-                    border:none;
-                    padding:10px 15px;
-                    border-radius:5px;
-                    cursor:pointer;
+                    background: #007bff;
+                    color: white;
+
+                    border: none;
+
+                    padding: 10px 18px;
+
+                    border-radius: 999px;
+
+                    cursor: pointer;
+
+                    font-weight: 600;
                 "
             >
                 Send
             </button>
-
         </div>
-
     </div>
+    <!-- FLOATING BUTTON -->
+    <button
+        @click="open = !open"
+        style="
+            width: 60px;
+            height: 60px;
 
+            border-radius: 999px;
+
+            border: none;
+
+            background: #007bff;
+            color: white;
+
+            font-size: 24px;
+
+            cursor: pointer;
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        "
+    >
+        💬
+    </button>
 </div>

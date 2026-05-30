@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = ['name', 'email', 'phone', 'address', 'notes', 'created_by', 'user_id'];
 
     public function creator()

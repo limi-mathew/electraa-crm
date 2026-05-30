@@ -19,7 +19,7 @@ class MessageFactory extends Factory
     public function definition(): array
     {
         return [
-           'user_id' => User::factory(),
+            'user_id' => User::factory(),
             'receiver_id' => User::factory(),
 
             'message' => fake()->sentence(),

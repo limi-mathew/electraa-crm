@@ -1,5 +1,5 @@
-@component('mail::message')
-# Welcome to Our Service!
+@component ('mail::message')
+    # Welcome to Our Service!
 
 Hello {{ $customer->name }},
 
@@ -14,12 +14,10 @@ Thank you for joining us! We're excited to have you as a new customer.
 Get Started
 @endcomponent
 
-If you have any questions, feel free to reach out to our support team.
+If you have any questions, feel free to reach out to our support team. Best
+regards, {{ config('app.name') }}
 
-Best regards,  
-{{ config('app.name') }}
-
-@slot('footer')
-© {{ date('Y') }} {{ config('app.name') }}. All rights reserved.
+@slot ('footer')
+    © {{ date('Y') }} {{ config('app.name') }}. All rights reserved.
 @endslot
 @endcomponent

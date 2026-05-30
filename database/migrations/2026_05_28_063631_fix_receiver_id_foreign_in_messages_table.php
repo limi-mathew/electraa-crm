@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -16,9 +15,9 @@ return new class extends Migration
 
             // Recreate correctly
             $table->foreign('receiver_id')
-                  ->references('id')
-                  ->on('users')
-                  ->cascadeOnDelete();
+                ->references('id')
+                ->on('users')
+                ->cascadeOnDelete();
         });
     }
 
@@ -29,8 +28,8 @@ return new class extends Migration
             $table->dropForeign(['receiver_id']);
 
             $table->foreign('receiver_id')
-                  ->references('id')
-                  ->on('users');
+                ->references('id')
+                ->on('users');
         });
     }
 };

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -53,7 +53,7 @@
             <p>Hello {{ $customer->name }},</p>
             <p>Thank you for joining us! We're excited to have you as part of our community.</p>
             <p>If you have any questions, feel free to contact us.</p>
-            <p>Best regards,<br>The Team</p>
+            <p>Best regards,<br />The Team</p>
         </div>
         <div class="footer">
             <p>&copy; 2024 Electrical CRM. All rights reserved.</p>

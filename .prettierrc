@@ -1,4 +1,6 @@
 {
   "singleQuote": true,
-  "semi": true
+  "semi": true,
+  "plugins": ["prettier-plugin-blade"]
+
 }
